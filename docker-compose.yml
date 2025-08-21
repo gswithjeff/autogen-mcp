@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - mcpcsharp-server
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+
+  mcpcsharp-server:
+    image: mcpcsharp/server
+    container_name: mcpcsharp-server
+    stdin_open: true
+    tty: true
